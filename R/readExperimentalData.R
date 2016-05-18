@@ -1,6 +1,6 @@
 #' Reads all data for CellTrans.
 #' 
-#' This function reads all necessary data. First, it opens a dialog box which asks for the number of cell types, the names of the cell types, the time-step length and the time points of measurement. Then, the files containing the cell state proportion matrices are read. First, the initial experimental setup matrix can either be chosen as identity matrix (for pure initial cell populations) or a custom initial matrix can be provided. Then, the experimental cell proportion matrices are read for each time point of measurement. It is recommendable to save the input into a variable for the further analysis, e.g. input <- readExperimentalData().
+#' This function reads all necessary data. First, it opens a dialog box which asks for the number of cell types, the names of the cell types, the time step length and the time points of measurement. Then, the files containing the cell state proportion matrices are read. First, the initial experimental setup matrix can either be chosen as identity matrix (for pure initial cell populations) or a custom initial matrix can be provided. Then, the experimental cell proportion matrices are read for each time point of measurement. It is recommendable to save the input into a variable for the further analysis, e.g. input <- readExperimentalData().
 #' @keywords initial experimental matrix, cell distribution matrices
 #' @export
 #' @examples
@@ -18,7 +18,7 @@ readExperimentalData <- function()  {
     cell_types[i] <- dlgInput(paste("Name of cell type", i))$res
   }
   #Ask for timeunits and timepoints
-  timeunits<-dlgList(title="Time-step length?",c("minutes","hours","days","weeks","months","cell divisions"))$res
+  timeunits<-dlgList(title="Time step length?",c("minutes","hours","days","weeks","months","cell divisions"))$res
   timenr<-as.integer(dlgInput("How many measured time points do you want to analyze?")$res)
   
   timepoints=rep(0,timenr)
