@@ -3,7 +3,7 @@ Title: CellTrans: An R package to quantify stochastic cell state transitions
 Version: 1.0
 Authors@R: person("Thomas", "Buder", email = "thomas.buder@tu-dresden.de", role = c("aut", "cre"))
 Description: CellTrans is an automated tool to quantify stochastic cell state transitions between distinct cell states from FACS and flow cytometry experiments, to estimate equilibrium cell state proportions and the needed time equilibrium.
-Depends:    R (>= 3.1.2)
+Depends:    R (>= 3.1.2),Hmisc,expm,markovchain,svDialogs
 License: GNU GENERAL PUBLIC LICENSE 3.0
 LazyData: true
 RoxygenNote: 5.0.1

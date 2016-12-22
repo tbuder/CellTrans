@@ -6,18 +6,18 @@
 #' @export
 
 celltransitions <- function(input) {
- 
- 
-	require(markovchain)
-	require(Hmisc)
-  require(expm)
-trMatrix=calculate_transitionMatrix(input$experimentalData,input$timepoints)
+
+  
+timepoints<-dlgList(title="Which timepoints shall be used for the estimation?",multiple=TRUE, choices=input$timepoints)$res  
+trMatrix=calculate_transitionMatrix(input$experimentalData,input$timepoints,timepoints)
 MC <- new("markovchain", states = input$cell_types,
                transitionMatrix = trMatrix,
                name = "Markov Chain")
 
 print("Results of CellTrans")
 print("################################")
+print("used timepoints:")
+print(timepoints)
 print(MC)
 print("predicted equilibrium distribution")
 print(steadyStates(MC))

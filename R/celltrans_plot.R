@@ -10,7 +10,10 @@
 
 
 celltrans_plot <- function(input) {
-  trMatrix=calculate_transitionMatrix(input$experimentalData,input$timepoints)
+  timepoints<-dlgList(title="Which timepoints shall be used for the estimation?",multiple=TRUE, choices=input$timepoints)$res  
+  
+  trMatrix=calculate_transitionMatrix(input$experimentalData,input$timepoints,timepoints)
+  
 
 
 

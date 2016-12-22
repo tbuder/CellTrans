@@ -3,6 +3,7 @@
 export(QOM)
 export(calculate_transitionMatrix)
 export(celltrans_plot)
+export(celltrans_plotPDF)
 export(celltransitions)
 export(isTrMatrix)
 export(readExperimentalData)

@@ -3,10 +3,12 @@
 #' This function derives the transition matrix which contains the transition probabilitites between the distinct cell states.
 #' @param M Matrix containing all experimental data: the initial experimental setup matrix and the experimental cell state distribution matrices.
 #' @param  t This parameter is a vector with all timepoints at which the cell state distributions have been experimentally measured.
+#' @param  used_timepoints A vector with the timepoints that are used to estimate the transition matrix.
+
 #' @keywords transition matrix, Matrix process
 #' @export
 
-  calculate_transitionMatrix <- function(M,t) {
+  calculate_transitionMatrix <- function(M,t,used_timepoints) {
   n=ncol(M)
   transitionMatrix=0
   countQOM=0
@@ -14,7 +16,7 @@
     #first submatrix in M contains initial matrix, calculate inverse
     invInitialMatrix=solve(M[1:n,])
     #derive transition matrices beginning with second submatrix in M
-
+  if (t[i] %in% used_timepoints ) {
     if (t[i]>1) {
     Ptemp=expm ( (1/t[i])*logm( (invInitialMatrix%*%M[(i*n+1):((i+1)*n), ]),method="Eigen"))
     } else {
@@ -29,7 +31,8 @@
 
     transitionMatrix=transitionMatrix+get( paste("P",t[i],sep=""))
   }
-  transitionMatrix=transitionMatrix/length(t)
+  }
+  transitionMatrix=transitionMatrix/length(used_timepoints)
 
   return(transitionMatrix)
 

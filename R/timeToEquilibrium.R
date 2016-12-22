@@ -11,7 +11,9 @@
 
 
 timeToEquilibrium <- function(input,initialDistribution,tol) {
-  trMatrix=calculate_transitionMatrix(input$experimentalData,input$timepoints)
+  timepoints<-dlgList(title="Which timepoints shall be used for the estimation?",multiple=TRUE, choices=input$timepoints)$res  
+  
+  trMatrix=calculate_transitionMatrix(input$experimentalData,input$timepoints,timepoints)
   require(markovchain)
   MC <- new("markovchain", states = input$cell_types,
             transitionMatrix = trMatrix,

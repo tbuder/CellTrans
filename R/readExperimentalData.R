@@ -8,8 +8,6 @@
 
 readExperimentalData <- function()  {
   
-  
-  require(svDialogs)
   dlgMessage("Welcome to CellTrans!\n Please be sure to have prepared the initial experimental setup matrix and the cell state distribution matrices.")
   cellnr  <- 	as.integer(dlgInput("Please specify the number of cell types!")$res)
   #Read cell type names

@@ -1,0 +1,12 @@
+#install devtools package
+
+if (!require("devtools")) install.packages("devtools")
+library(devtools)
+
+#install with proxy. enter your internet proxy settings here!
+
+library(httr)
+set_config(
+  use_proxy(url="www-cache.htw-dresden.de", port=3128)
+)
+install_github("tbuder/CellTrans")
