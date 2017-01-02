@@ -1,9 +1,9 @@
-#' Calculates a transition matrix.
+#' Calculation of the transition matrix.
 #'
 #' This function derives the transition matrix which contains the transition probabilitites between the distinct cell states.
 #' @param M Matrix containing all experimental data: the initial experimental setup matrix and the experimental cell state distribution matrices.
-#' @param  t This parameter is a vector with all timepoints at which the cell state distributions have been experimentally measured.
-#' @param  used_timepoints A vector with the timepoints that are used to estimate the transition matrix.
+#' @param  t This A vector containing all timepoints at which the cell state distributions have been experimentally measured.
+#' @param  used_timepoints A vector with the timepoints utilized to estimate the transition matrix.
 
 #' @keywords transition matrix, Matrix process
 #' @export

@@ -1,14 +1,13 @@
-#' Reads all data for CellTrans.
+#' Reading all necessary data.
 #' 
-#' This function reads all necessary data. First, it opens a dialog box which asks for the number of cell types, the names of the cell types, the time step length and the time points of measurement. Then, the files containing the cell state proportion matrices are read. First, the initial experimental setup matrix can either be chosen as identity matrix (for pure initial cell populations) or a custom initial matrix can be provided. Then, the experimental cell proportion matrices are read for each time point of measurement. It is recommendable to save the input into a variable for the further analysis, e.g. input <- readExperimentalData().
+#' This function opens a dialog box which asks for the number of cell types, the names of the cell types, the time step length and the time points of measurement. Then, the files containing the cell state proportion matrices can be selected. First, the initial experimental setup matrix can either be chosen as identity matrix (for pure initial cell populations) or a custom initial matrix can be provided. Then, the experimental cell proportion matrices are read for each time point of measurement. It is recommended to save the input into a variable for the further analysis, e.g. input <- readExperimentalData().
 #' @keywords initial experimental matrix, cell distribution matrices
 #' @export
-#' @examples
-#' input<-readExperimentalData()
+
 
 readExperimentalData <- function()  {
   
-  dlgMessage("Welcome to CellTrans!\n Please be sure to have prepared the initial experimental setup matrix and the cell state distribution matrices.")
+  dlgMessage("Welcome to CellTrans!\n Please check that you have prepared appropriate text files for the initial experimental setup matrix and the cell state distribution matrices.")
   cellnr  <- 	as.integer(dlgInput("Please specify the number of cell types!")$res)
   #Read cell type names
   cell_types=rep.int(0,cellnr)
@@ -16,12 +15,12 @@ readExperimentalData <- function()  {
     cell_types[i] <- dlgInput(paste("Name of cell type", i))$res
   }
   #Ask for timeunits and timepoints
-  timeunits<-dlgList(title="Time step length?",c("minutes","hours","days","weeks","months","cell divisions"))$res
-  timenr<-as.integer(dlgInput("How many measured time points do you want to analyze?")$res)
+  timeunits<-dlgList(title="Time step length",c("minutes","hours","days","weeks","months","cell divisions"))$res
+  timenr<-as.integer(dlgInput("Number of time points")$res)
   
   timepoints=rep(0,timenr)
   for (i in 1:timenr)  {
-    timepoints[i] <-dlgInput(paste0("Please input timepoint ",i))$res
+    timepoints[i] <-dlgInput(paste0("Timepoint ",i))$res
   }
   timepoints=as.numeric(timepoints)
   

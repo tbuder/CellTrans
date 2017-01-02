@@ -1,6 +1,6 @@
-#' Is a matrix a transition matrix?
+#' Check for transition matrix.
 #'
-#' A function that checks whether a matrix is a stochastic matrix describing a Markov process, i.e. with non-negative entries and row sums equal to one.
+#' Verification whether a matrix is a stochastic matrix of a Markov process or not, i.e. with non-negative entries and row sums equal to one.
 #' @param A The matrix that is checked to be a transition matrix.
 #' @keywords transition matrix, Matrix process
 #' @export

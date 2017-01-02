@@ -2,7 +2,7 @@
 % Please edit documentation in R/isTrMatrix.R
 \name{isTrMatrix}
 \alias{isTrMatrix}
-\title{Is a matrix a transition matrix?}
+\title{Check for transition matrix.}
 \usage{
 isTrMatrix(A)
 }
@@ -10,7 +10,7 @@ isTrMatrix(A)
 \item{A}{The matrix that is checked to be a transition matrix.}
 }
 \description{
-A function that checks whether a matrix is a stochastic matrix describing a Markov process, i.e. with non-negative entries and row sums equal to one.
+Verification whether a matrix is a stochastic matrix of a Markov process or not, i.e. with non-negative entries and row sums equal to one.
 }
 \keyword{Matrix}
 \keyword{matrix,}

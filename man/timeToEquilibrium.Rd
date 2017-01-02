@@ -2,7 +2,7 @@
 % Please edit documentation in R/timeToEquilibrium.R
 \name{timeToEquilibrium}
 \alias{timeToEquilibrium}
-\title{Calculates an estimate of the time needed to equilibrium.}
+\title{Calculation of time to equilibrium.}
 \usage{
 timeToEquilibrium(input, initialDistribution, tol)
 }
@@ -14,10 +14,7 @@ timeToEquilibrium(input, initialDistribution, tol)
 \item{tol}{The tolerance deviation from the equilibrium distribution.}
 }
 \description{
-This function estimates the time from any intitial cell state proportions until the equilibrium proportions. The variable input contains the read data from the function readExperimentalData(). The variable initialDistribution is avector of length m which describes the initial cell state proportions, for example c(0.25,0.25,0.25,0.25) for equal proportions of 4 cell types. The third parameter tol gives a tolerance deviation between the cell state proportions of the equilibrium distribution and those of the predicted cell state proportions since the exact equilibrium distribution is not reached, in general. For the parameter tol, we recommend values between 0.01 and 0.02.
-}
-\examples{
-timeToEquilibrium(input, c(0,0,0,0,0.5,0.5), 0.01)
+This function estimates the time from any intitial cell state proportions until the equilibrium proportions. The variable input contains the read data from the function readExperimentalData(). The variable initialDistribution is a vector describing the initial cell state proportions, for example c(0.25,0.25,0.25,0.25) for equal proportions of 4 cell types. The third parameter tol is a tolerance deviation between the cell state proportions of the equilibrium distribution and those of the predicted cell state proportions for each cell state. For the parameter tol, we recommend values between 0.01 and 0.02.
 }
 \keyword{plot}
 

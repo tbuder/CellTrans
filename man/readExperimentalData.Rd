@@ -2,15 +2,12 @@
 % Please edit documentation in R/readExperimentalData.R
 \name{readExperimentalData}
 \alias{readExperimentalData}
-\title{Reads all data for CellTrans.}
+\title{Reading all necessary data.}
 \usage{
 readExperimentalData()
 }
 \description{
-This function reads all necessary data. First, it opens a dialog box which asks for the number of cell types, the names of the cell types, the time step length and the time points of measurement. Then, the files containing the cell state proportion matrices are read. First, the initial experimental setup matrix can either be chosen as identity matrix (for pure initial cell populations) or a custom initial matrix can be provided. Then, the experimental cell proportion matrices are read for each time point of measurement. It is recommendable to save the input into a variable for the further analysis, e.g. input <- readExperimentalData().
-}
-\examples{
-input<-readExperimentalData()
+This function opens a dialog box which asks for the number of cell types, the names of the cell types, the time step length and the time points of measurement. Then, the files containing the cell state proportion matrices can be selected. First, the initial experimental setup matrix can either be chosen as identity matrix (for pure initial cell populations) or a custom initial matrix can be provided. Then, the experimental cell proportion matrices are read for each time point of measurement. It is recommended to save the input into a variable for the further analysis, e.g. input <- readExperimentalData().
 }
 \keyword{cell}
 \keyword{distribution}
