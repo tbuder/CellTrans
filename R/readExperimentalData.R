@@ -33,7 +33,7 @@ readExperimentalData <- function()  {
   res=""
   while (res=="") {
     res <- dlgList(title="Initial experimental setup matrix", choices=c("Identity matrix (pure initial cell compositions)", "Individual matrix"))$res
-    if (res=="Identity matrix") {
+    if (res=="Identity matrix (pure initial cell compositions)") {
       expData[1:cellnr,]=diag(cellnr)
     } else {
       repeat {
