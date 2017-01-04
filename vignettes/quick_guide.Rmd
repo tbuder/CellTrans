@@ -26,7 +26,7 @@ CellTrans is freely available  via GitHub, see [my GitHub page](http://github.co
 
 ```r
 if (!require("devtools")) install.packages("devtools")
-library("devtools"")
+library("devtools")
 install_github("tbuder/CellTrans")
 ```
 Note that you need the `devtools` package in order to install packages from GitHub and that it might be necessary to adjust your connection settings if you use a proxy server.
@@ -76,6 +76,9 @@ This command opens a sequence of windows asking for the details of the experimen
 
 
 ![... which are specified in the next step: day 2, 4,...,24.](C:\Users\Thomas\Dropbox\TU\R\CellTrans\inst\doc\images\timepoints.png)
+
+![The initial cell state distributions of the experiments in the example are purified cell lines. If the experimental setup is different, an individual matrix containing row-wise the initial cell state compositions can be provided. ](C:\Users\Thomas\Dropbox\TU\R\CellTrans\inst\doc\images\initial_matrix.png)
+
 
 
 
@@ -147,14 +150,21 @@ allows to choose the data points conidered for the estimation and asks whether t
 
 ![Here, the experimental equilibrium shall not be plotted.](C:\Users\Thomas\Dropbox\TU\R\CellTrans\inst\doc\images\plot_equi.png)
 
-Subsequently, the experiments for which a plot shall be created can be selected. For each selected experiment one plot is created with the corresponding evolution of the cell state proportions and the predicted evolution estimated by CellTrans.
+Subsequently, the experiments for which a plot shall be created can be selected. For each selected experiment one plot is created with the corresponding evolution of the cell state proportions and the predicted evolution estimated by CellTrans. Furthermore, you can choose which cell states shall be included in the plot.
 
-![This selection creates a plot for both cell line experiments.](C:\Users\Thomas\Dropbox\TU\R\CellTrans\inst\doc\images\exp_to_plot.png)
+![This selection creates a plot for both cell line experiments....](C:\Users\Thomas\Dropbox\TU\R\CellTrans\inst\doc\images\exp_to_plot.png)
 
+![...containing the data and predictions for both cell states.](C:\Users\Thomas\Dropbox\TU\R\CellTrans\inst\doc\images\states_to_plot.png)
 
-Several other options are conveniently asked for in dialog windows, e.g. the range of the y-axis and the cell states you would like to plot. Finally, you can choose the directory of the plot. In our example, we get for experiment 1 the following plot which is saved as `Plot_1.pdf` in the selected directory.
+Then, you can choose the range of the y-axis and select a directory where the plots are saved. 
 
-![](C:\Users\Thomas\Dropbox\TU\R\CellTrans\inst\doc\images\Plot_1.png)  
+![We select a range of 1 for the y-axis.](C:\Users\Thomas\Dropbox\TU\R\CellTrans\inst\doc\images\range_y.png)  
+
+![Here, the pdf files are saved on the desktop.](C:\Users\Thomas\Dropbox\TU\R\CellTrans\inst\doc\images\choose_dir.png)  
+
+Finally, two pdfs are created with the data of both experiments and the corresponding predictions of CellTrans using all data points.
+
+![The plot for experiment 1 and both cell types is saved as `plot_1.pdf`.](C:\Users\Thomas\Dropbox\TU\R\CellTrans\inst\doc\images\Plot_1.png)  
 
   
 The function `celltrans_plot()` offers the same options, but directly produces a plot in R without creating a pdf.
