@@ -8,7 +8,7 @@
 readExperimentalData <- function()  {
   
   dlgMessage("Welcome to CellTrans!\n Please check that you have prepared appropriate text files for the initial experimental setup matrix and the cell state distribution matrices.")
-  cellnr  <- 	as.integer(dlgInput("Please specify the number of cell types!")$res)
+  cellnr  <- 	as.integer(dlgInput("Number of cell states")$res)
   #Read cell type names
   cell_types=rep.int(0,cellnr)
   for (i in 1:cellnr)  {

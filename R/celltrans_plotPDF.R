@@ -11,29 +11,29 @@
 
 celltrans_plotPDF <- function(input) {
 
-  timepoints<-dlgList(title="Which timepoints shall be used for the estimation?",multiple=TRUE, choices=input$timepoints)$res  
+  timepoints<-dlgList(title="Select data for estimation",multiple=TRUE, choices=input$timepoints)$res  
   
   trMatrix=calculate_transitionMatrix(input$experimentalData,input$timepoints,timepoints)
 
   controltime=0
-  control<-dlgList(title="Plot experimental equilibirum?", choices=c("yes","no"))$res
+  control<-dlgList(title="Plot experimental equilibrium?", choices=c("yes","no"))$res
 if(control=="yes") {
   
-  controlvector=matrix(scan(dlgOpen(title = paste0("Select file with experimental equilibirum distribution."))$res, n = input$cellnr), nrow=1, byrow = TRUE)
+  controlvector=matrix(scan(dlgOpen(title = paste0("Select file with experimental equilibrium distribution."))$res, n = input$cellnr), nrow=1, byrow = TRUE)
                  while (!isTrMatrix(controlvector)) 
                  { dlgMessage(paste("Try again! Selected file does not contain an experimental control vector of dimension ",input$cellnr," !"))
                    controlvector=matrix(scan(dlgOpen(title = paste0("Select file with control distribution."))$res, n = input$cellnr), nrow=1, byrow = TRUE)
                                   
                  }
-  controltime<-as.double(dlgInput("The experimental equilibirum shall be plotted at time...")$res)
+  controltime<-as.double(dlgInput("Time point of equilibrium in the plot")$res)
   
                  
 }
   
   
 
-initExp <- as.integer(dlgList(title="Which experiment(s) shall be plotted?",multiple=TRUE, choices=c(1:input$cellnr))$res)
-statestoplot <- as.integer(dlgList(title="Which cell states shall be plotted?",multiple=TRUE, choices=c(1:input$cellnr))$res)
+initExp <- as.integer(dlgList(title="Plot experiment(s)...",multiple=TRUE, choices=c(1:input$cellnr))$res)
+statestoplot <- as.integer(dlgList(title="Plot cell state(s)...",multiple=TRUE, choices=input$cell_types)$res)
 y_bis <- as.double(dlgInput("Range of y-value for plot")$res)
 folder<-dlgDir(default = getwd())$res
 #name<-dlgInput("Filename?")$res
