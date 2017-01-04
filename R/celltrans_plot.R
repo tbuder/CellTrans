@@ -10,32 +10,66 @@
 
 
 celltrans_plot <- function(input) {
-  timepoints<-dlgList(title="Which timepoints shall be used for the estimation?",multiple=TRUE, choices=input$timepoints)$res  
+  
+  timepoints<-dlgList(title="Data point(s) for estimation",multiple=TRUE, choices=input$timepoints)$res  
   
   trMatrix=calculate_transitionMatrix(input$experimentalData,input$timepoints,timepoints)
   
-
-
-
-initExp <- as.integer(dlgList(title="Which experiment(s) shall be plotted?", choices=c(1:input$cellnr))$res)
-initialcelldistr=input$experimentalData[initExp, ]
-maxtime=max(input$timepoints)
-colors=rainbow(input$cellnr)
-plot(main=paste0("Experiment with initial distribution \n(", paste(input$cell_types,collapse=", "),") = (",paste(initialcelldistr,collapse = ", "),")"),1,1,type="n",xlab=input$timeunits, ylab=paste("fraction of cells"),ylim=c(0,1),xlim=c(0,maxtime),cex.main=0.8)
-for (step in 1:maxtime) {
-  data=rbind2(initialcelldistr,t(sapply(1:maxtime,
-                                        function (step) {initialcelldistr %*% (trMatrix %^% step)})))
-}
-matplot(add=T,x=c(0:maxtime),y=data,lty=1,type="l",lwd=2,col=colors)
-legend("topright",lwd="2", legend=input$cell_types,col=colors)
-#plot datapoints
-
-for (i in 1:input$cellnr) {
-  #plot initial distribution
-  points(0,input$experimentalData[initExp,i],col=colors[i],lwd=2,pch=21,bg=colors[i])
-  #plot datapoints
-  for (j in 1:length(input$timepoints)) {
-    points(input$timepoints[j],input$experimentalData[j*input$cellnr+initExp,i],col=colors[i],lwd=2,pch=21,bg=colors[i])
+  controltime=0
+  control<-dlgList(title="Plot experimental equilibrium?", choices=c("yes","no"))$res
+  if(control=="yes") {
+    
+    controlvector=matrix(scan(dlgOpen(title = paste0("Select file with experimental equilibrium distribution."))$res, n = input$cellnr), nrow=1, byrow = TRUE)
+    while (!isTrMatrix(controlvector)) 
+    { dlgMessage(paste("Try again! Selected file does not contain an experimental control vector of dimension ",input$cellnr," !"))
+      controlvector=matrix(scan(dlgOpen(title = paste0("Select file with control distribution."))$res, n = input$cellnr), nrow=1, byrow = TRUE)
+      
+    }
+    controltime<-as.double(dlgInput("Time point of equilibrium")$res)
+    
+    
   }
-}
+  
+  
+
+  
+  initExp <- as.integer(dlgList(title="Plot experiment(s)...",multiple=TRUE, choices=c(1:input$cellnr))$res)
+  statestoplot <- dlgList(title="Plot cell state(s)...",multiple=TRUE, choices=input$cell_types)$res
+  
+  # Choose position of states in cell_types vector
+  statestoplot <- which(input$cell_types == statestoplot)
+  y_bis <- as.double(dlgInput("Range of y-value for plot")$res)
+
+  
+  maxtime=max(input$timepoints,controltime)
+  
+  colors=rainbow(input$cellnr)
+  #ADAPT colors:
+  #colors=c(rgb(192/255,0,0),rgb(1,0,0),rgb(1,80/255,80/255),rgb(1,124/255,128/255),rgb(32/255,56/255,100/255),rgb(0,102/255,1),rgb(0,176/255,249/255),rgb(204/255,1,1),rgb(56/255,87/255,35/255),rgb(84/255,130/255,53/255),rgb(146/255,208/255,80/255),rgb(197/255,224/255,180/255),rgb(191/255,144/255,0),rgb(1,192/255,0),rgb(1,1,0),rgb(1,1,204/255))
+  
+  
+  for (k in initExp) {
+    initialcelldistr=input$experimentalData[k, ]
+    plot(main=paste0("Experiment with initial distribution \n(", paste(input$cell_types,collapse=", "),") = (",paste(initialcelldistr,collapse = ", "),")"),1,1,type="n",xlab=input$timeunits, ylab=paste("fraction of cells"),ylim=c(0,y_bis),xlim=c(0,maxtime),cex.main=0.8)
+    for (step in 1:maxtime) {
+      data=rbind2(initialcelldistr,t(sapply(1:maxtime,
+                                            function (step) {initialcelldistr %*% (trMatrix %^% step)})))[,statestoplot]
+    }
+    matplot(add=T,x=c(0:maxtime),y=data,lty=1,type="l",lwd=2,col=colors[statestoplot])
+    legend("topright",lwd="2", legend=input$cell_types[statestoplot],col=colors[statestoplot])
+    #plot datapoints
+    
+    for (i in statestoplot) {
+      #plot initial distribution
+      points(0,input$experimentalData[k,i],col=colors[i],lwd=2,pch=21,bg=colors[i])
+      #plot datapoints
+      for (j in 1:length(input$timepoints)) {
+        points(input$timepoints[j],input$experimentalData[j*input$cellnr+k,i],col=colors[i],lwd=2,pch=21,bg=colors[i])
+      }
+      if (control=="yes") {
+        points(controltime,controlvector[i],col=colors[i],lwd=2,pch=21,bg=colors[i])
+        
+      }
+    }
+  }
 }

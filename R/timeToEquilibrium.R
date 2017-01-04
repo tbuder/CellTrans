@@ -10,7 +10,7 @@
 
 
 timeToEquilibrium <- function(input,initialDistribution,tol) {
-  timepoints<-dlgList(title="Which timepoints shall be used for the estimation?",multiple=TRUE, choices=input$timepoints)$res  
+  timepoints<-dlgList(title="Data point(s) for estimation",multiple=TRUE, choices=input$timepoints)$res  
   
   trMatrix=calculate_transitionMatrix(input$experimentalData,input$timepoints,timepoints)
   require(markovchain)
@@ -28,7 +28,7 @@ timeToEquilibrium <- function(input,initialDistribution,tol) {
     
 
   
-  if (steps==10000) { print(paste("Expected time to equilibrium could not be determined.Increasing the tolerance might help."))
+  if (steps==100000) { print(paste("Expected time to equilibrium could not be determined. Increasing the tolerance might help."))
                      break}
 
   distribution=distribution%*%trMatrix

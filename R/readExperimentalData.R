@@ -7,7 +7,7 @@
 
 readExperimentalData <- function()  {
   
-  dlgMessage("Welcome to CellTrans!\n Please check that you have prepared appropriate text files for the initial experimental setup matrix and the cell state distribution matrices.")
+  dlgMessage("Welcome to CellTrans!\n Please assure that you have prepared appropriate files containing the cell state distribution matrices representing your experimental data.")
   cellnr  <- 	as.integer(dlgInput("Number of cell states")$res)
   #Read cell type names
   cell_types=rep.int(0,cellnr)
@@ -32,7 +32,7 @@ readExperimentalData <- function()  {
   #Ask for initial input matrix
   res=""
   while (res=="") {
-    res <- dlgList(title="Initial experimental setup matrix", choices=c("Identity matrix", "Individual matrix"))$res
+    res <- dlgList(title="Initial experimental setup matrix", choices=c("Identity matrix (pure initial cell compositions)", "Individual matrix"))$res
     if (res=="Identity matrix") {
       expData[1:cellnr,]=diag(cellnr)
     } else {

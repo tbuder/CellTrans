@@ -2,3 +2,4 @@
 .Rhistory
 .RData
 install_public_celltrans.txt
+inst/doc
