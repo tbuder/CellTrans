@@ -3,10 +3,10 @@ title: "A Quick Guide to CellTrans"
 author: "Thomas Buder"
 date: "`r Sys.Date()`"
 output:
-  rmarkdown::html_document:
+  rmarkdown::pdf_document:
     fig_caption: yes        
-    # includes:  
-    #   in_header: h.tex
+    includes:  
+      in_header: h.tex
 bibliography: vignette.bib
 vignette: >
   %\VignetteIndexEntry{A Quick Guide to CellTrans}
@@ -164,7 +164,7 @@ Then, you can choose the range of the y-axis and select a directory where the pl
 
 Finally, two pdfs are created with the data of both experiments and the corresponding predictions of CellTrans using all data points.
 
-![The plot for experiment 1 and both cell types is saved as `plot_1.pdf`.](C:\Users\Thomas\Dropbox\TU\R\CellTrans\inst\doc\images\Plot_1.png)  
+![The plot for experiment 2 and both cell types is saved as `plot_2.pdf`.](C:\Users\Thomas\Dropbox\TU\R\CellTrans\inst\doc\images\Plot_1.png)  
 
   
 The function `celltrans_plot()` offers the same options, but directly produces a plot in R without creating a pdf.
