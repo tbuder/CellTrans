@@ -27,7 +27,7 @@ CellTrans is freely available  via GitHub, see [my GitHub page](http://github.co
 ```r
 if (!require("devtools")) install.packages("devtools")
 library("devtools")
-install_github("tbuder/CellTrans"", build_vignettes="TRUE")
+install_github("tbuder/CellTrans"", build_vignettes=TRUE)
 ```
 Note that you need the `devtools` package in order to install packages from GitHub and that it might be necessary to adjust your connection settings if you use a proxy server.
 
