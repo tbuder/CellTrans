@@ -3,10 +3,10 @@ title: "A Quick Guide to CellTrans"
 author: "Thomas Buder"
 date: "`r Sys.Date()`"
 output:
-  rmarkdown::pdf_document:
+  rmarkdown::html_document:
     fig_caption: yes        
-    includes:  
-      in_header: h.tex
+#    includes:  
+#     in_header: h.tex
 bibliography: vignette.bib
 vignette: >
   %\VignetteIndexEntry{A Quick Guide to CellTrans}
